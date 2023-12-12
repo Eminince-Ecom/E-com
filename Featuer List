@@ -4,36 +4,37 @@ FEATURE LIST  ECOMMERCE
 Authentication  
 
 Login :- There will be a login feature where we will have the facility to login as a buyer or as a seller 
-Register:- There will be a register feature  where we will have the facility to register as a seller,Buyer 
+Register:- There will be a register feature  where we will have the facility to register as a seller,Buyer ,admin
 
 
 
 
 The homepage in the case of user login will have products and product categories 
-The homepage in the case of the reseller will have the the things related to the reseller like wallet,sold products,most selling product,least sold product ,product quantity 
+The homepage in the case of the seller will have the the things related to the seller like wallet,sold products,most selling product,least sold product ,product quantity 
 There will be a search bar at the top where the buyer can search the product as per name 
 
-ProductManagement
+ProductListing
 User :-The product management will  have the categories to filter out the products based on the  price,type,ratings ,most selling 
-Reseller :- the reseller will have totally different ui for the homepage as well as the the product management reseller will have the dashboard 
+seller :- the reseller will have totally different ui for the homepage as well as the the product management reseller will have the dashboard 
 
 
-Shopping Cart (Only for User)
-Create cart :-The user can add the products to his cart 
-View cart:- The user can view the products that are there in  his cart 
-Edit cart :- The user can increase ,decrease the quantity of the product in his cart
-Delete from Cart:- The user can delete the products from  his cart 
+Shopping Cart 
+Add to Cart :-The user can add the products to his cart 
+View Cart Products:- The user can view the products that are there in  his cart 
+Make Changes in Cart :- The user can increase ,decrease the quantity of the product in his cart
+Delete Products from  Cart:- The user can delete the products from  his cart 
 
         Payment:-
 The buyer can select the method of payment  before the dispatching of the products .There will be two  payment method cash on delivery and Online payment 
 
 
+Billing of Cart
+We will generate the bill for our whole shopping so in future if the user needs the bill of the shopping he did from our platform he can get 
+
 
 Product Tracking ➖The product tracking will be inside the Shopping Cart
 There will be a flash message to the user when his product is out now so he gets notified 
 This section will allow the buyer to track the location of his products and see where his product is 
-
-
 
 
 Return Order 
@@ -49,14 +50,54 @@ The product will only be returned if the product same and in good condition and 
 
 
 
-Billing of Cart
-We will generate the bill for our whole shopping so in future if the user needs the bill of the shopping he did from our platform he can get 
-
      
-Admin Panel:- There will be  admin panel for the super admin  we can login as an admin 
-The user will log  into the admin panel and user  will be redirected to the admin dashboard 
-In the dashboard the admin  can see all the things related to sales of the product ,wallet
-Admin create,update delete into our  webapp products,offer,
- Block fake user
+Admin Panel:-  
+ Security ,Access
 
-asfgdadgkgdsghksda
+There will be a login for the admin where only the admin can login 
+
+Product Management
+Admin  can add products,make changes and delete the products
+Manage Product categories and attributes.
+Upload Product Images 
+
+
+Order Management
+View and Manage Orders 
+Track order Status processed or fulfilled
+Manage refunds
+
+Customer Management
+Can view Order history of  the user and user profile
+Can communicate  with users through email
+Manage Refunds
+
+Reports 
+The Admin can see the sales report of the whole ecommerce store
+
+Content Management
+Admin can manage the content  of the products and homepage,Banners
+
+Marketing
+Creating discounts and offers for special occasions for the users
+
+Payment And Finance
+View and manage transaction and manage payment process
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
