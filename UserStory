@@ -1,0 +1,55 @@
+USER STORY: ECOM PLATFORM
+Introduction:
+This user story outlines the functionality of an e-commerce platform, consisting of three modules: Ecom Web App for users, Seller Dashboard for sellers, and Admin Panel for administrators.
+1. Login Module
+Description:
+The user encounters the login module upon entering the web app.
+If not registered, the user must first register to login.
+Login Options:
+Users can sign in using Google, GitHub, or Facebook accounts.
+Alternatively, users can log in with a username and password.
+Successful Login:
+Upon successful login, users are redirected to the homepage.
+2. Homepage Module
+Navbar:
+Logo: Redirects to the homepage.
+Search: Allows users to search for specific products.
+Login Icon: Redirects to the login and register page.
+Return and Orders Section: Displays user orders; includes a "Return" button for initiating returns.
+Cart Icon: Redirects to the cart page.
+Cart Page:
+Displays items in the cart.
+Users can modify quantities, view the final price, and remove items.
+Sidebar:
+Implements filter functionality for product categories, prices, and ratings.
+3. Payment Module
+Buy Now Button:
+Clicking the "Buy Now" button displays the payment module.
+Users choose between cash on delivery and online payment.
+Online Payment:
+If online payment is selected, Stripe handles the payment process.
+Amount is calculated online.
+4. Billing Module
+Billing Options:
+Online Payment: Users can download a billing PDF.
+Cash on Delivery: Bill handed over by the delivery person.
+5. Product Tracking Module
+Location Tracking:
+Percentage display indicating the delivery progress.
+Users can track the status of their order.
+ADMIN DASHBOARD
+Admin Login
+Secret Key:
+Admin logins require a secret key.
+Admin Dashboard
+Sidebar:
+Products:
+Add, edit, delete products.
+Manage product quantities.
+Orders:
+View and manage orders.
+Filter by order type (placed, canceled, returned, refund).
+Customers:
+Admin can manage customer information.
+
+
