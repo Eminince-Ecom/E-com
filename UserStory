@@ -22,34 +22,106 @@ Displays items in the cart.
 Users can modify quantities, view the final price, and remove items.
 Sidebar:
 Implements filter functionality for product categories, prices, and ratings.
-3. Payment Module
+
+
+
+3   ShoppingCartModule (Cart Page)
+  As a buyer, I want to efficiently manage my shopping cart. Therefore:
+Add Products to Cart:
+When browsing products, I can easily add items to my cart with a simple click.
+Modify Product Quantity:
+In my shopping cart, I can adjust the quantity of a product using intuitive controls:
+Increase quantity: Clicking the "+" button next to the product.
+Decrease quantity: Clicking the "-" button next to the product.
+View Cart:
+I can view my entire cart to review the selected products, their quantities, and the total cost.
+Delete Products from Cart:
+If needed, I have the option to remove products from my cart:
+A "Remove" or trash bin icon is available next to each product for easy deletion.
+
+4. Payment Module
 Buy Now Button:
 Clicking the "Buy Now" button displays the payment module.
 Users choose between cash on delivery and online payment.
 Online Payment:
 If online payment is selected, Stripe handles the payment process.
 Amount is calculated online.
+ Cash on Delivery (COD):
+can select the "Cash on Delivery" option if I prefer to pay when receiving the products.
+
 4. Billing Module
 Billing Options:
 Online Payment: Users can download a billing PDF.
-Cash on Delivery: Bill handed over by the delivery person.
-5. Product Tracking Module
+Cash on Delivery: Bill handed over by the delivery person ad downloaded also
+X    5. Product Tracking Module
 Location Tracking:
 Percentage display indicating the delivery progress.
 Users can track the status of their order.
+6. Return   Module
+Location Tracking:
+The Buyer gets a flash message on his contact number when his delivery is out.
+
+
+
+7. Refund   Module
+Location Tracking:
+Percentage display indicating the delivery progress.
+Users can track the status of their order.
+
+
 ADMIN DASHBOARD
-Admin Login
-Secret Key:
-Admin logins require a secret key.
+Admin Login:
+As an admin, I access the login page.
+The login page has a simple Input field for entering my credentials. Credential will be a secret key for login
+It includes a "Login" button for authentication.
+
+
 Admin Dashboard
 Sidebar:
-Products:
-Add, edit, delete products.
-Manage product quantities.
-Orders:
-View and manage orders.
-Filter by order type (placed, canceled, returned, refund).
-Customers:
-Admin can manage customer information.
+ Product  Management
+Manage Products:
+After successful login, I land on the admin dashboard.
+I see a navigation menu with options, including "Product Management."
+Clicking on "Product Management" opens a page where I can:
+View existing products.
+Add new products with a form.
+Edit and modify product details.
+Delete products as needed.
 
+Order Management
+Manage Orders:
+In the dashboard, I navigate to "Order Management."
+A page displays a list of orders with details like order number, date, and status.
+Clicking on an order shows its details, including the products, customer information, and order status.
+I have options to process and fulfill orders.
+Filter by order type (placed, canceled, returned, refund).
+
+
+
+
+
+
+
+Customer Management
+Manage Customers:
+Under "Customer Management," I can view a list of registered users.
+Clicking on a user displays their order history and profile details.
+I have the ability to communicate with users via an integrated email system.
+I can manage refunds for specific users.
+
+Reports
+View Sales Reports:
+In the "Reports" section, I can access sales reports.
+The reports page displays graphs and charts representing sales data 
+
+Content Management
+Manage Content:
+Navigating to "Content Management" allows me to modify the content of products, homepage, and essential sections.
+An editor interface lets me update text, images, and banners.
+
+
+Payment And Finance
+View Transactions:
+The "Payment And Finance" section allows me to view and manage transactions.
+A table displays transaction details, including date, amount, and payment status.
 
