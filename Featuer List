@@ -8,18 +8,18 @@ Registration for buyers .
 Description: Users can log in with existing accounts or register as buyers. The login also provides options to login  for Admin .
 
 Homepage
-User Login:
-Displays navbar, products and categories and essential’s.
+User Login: 
+Displays navbar, products and categories ,carousel,  discount offers.
 Admin Login:
 Admin-specific information like transaction, products, customers, offers, and statistics .
 Search Bar:
-Allows buyers to search for products by name,price,type,ratings,category.
-  Description: Users, upon login, will see a homepage featuring products and categories. Administrator have personalized dashboard.
+Allows buyers to search for products by name,category.
+  Description: Users, upon login, will see a homepage featuring products and categories. Administrator will  have personalized dashboard.
  Product Listing
 User:
 Filter products by price, type, ratings, and name,category 
 Admin:
-Different UI for the admin homepage with product management,product management,orders management,customer  management,transaction management and other essential’s.
+Different UI for the admin homepage with ,product management,orders management, customer  management,transaction management and Reports.
 
 Shopping Cart
 Add to Cart:
@@ -31,7 +31,10 @@ Users can modify product quantities in the cart.
 Remove  Products from Cart:
 Users can remove products from their carts.
 Payment
-Payment Methods:
+
+ Checkout form
+Form asking for delivery and payment details
+ Methods:Payment
 Cash on delivery and online payment options.
 Billing:
 Generate bills for shopping records.
@@ -46,7 +49,7 @@ Refund Payment
 Refund Process:
 Refund initiated when the user returns the order.
 Refund amount returned to the user's account.
-Status tracking for refunds.
+
 Return criteria: product is the same, in good condition, and within 2 days.
 
 Admin Panel
@@ -55,9 +58,7 @@ Admin Login:
 Secured login access for administrators.
 Product Management
 Add, Edit, Delete:
-Admin can manage products.
-Manage product categories and attributes.
-Modify product images,price and other essential’s.
+Add,Modify,Remove product images,price,quantity ,category and ratings.
 Order Management
 View and Manage Orders:
 Admin can handle order processing and fulfillment.
@@ -68,19 +69,17 @@ Admin can process and manage refunds.
 Customer Management
 View Order History:
 Admin can view the order history of users and their profiles.
-Communication:
-Admin can communicate with users via email.
+Can see user Info:
+Admin can see user info eg. Name, Mobile  and address. 
 Manage Refunds:
 Admin has control over refund management.
 Reports
 Sales Reports:
 Admin can view sales reports for the entire e-commerce store.
-Content Management
-Manage Content:
-Admin can handle the content of products, homepage, and essentials.
 Marketing
 Discounts and Offers:
 Admin can create discounts and offers for special occasions.
+
 Payment And Finance
 Transaction Management:
 Admin can view and manage transactions.
