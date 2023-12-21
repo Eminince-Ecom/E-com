@@ -4,7 +4,7 @@ const cors=require('cors')
 const app=express()
 const dotenv=require('dotenv')
 
-const errorMiddleware=require('./Middleware/Error')
+//const errorMiddleware=require('./Middleware/Error')
 dotenv.config()
 
 //Middlewares
@@ -19,7 +19,7 @@ app.use(cors())
 
 //Error Middleware
 
-app.use(errorMiddleware())
+//app.use(errorMiddleware())
 
 
 const port=process.env.PORT
