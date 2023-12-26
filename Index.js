@@ -3,7 +3,7 @@ const cors=require('cors')
 const {updateData} =require('./database/connection')
 const app=express()
 const dotenv=require('dotenv')
-
+const path = require('path');
 
 //Middlewares
 app.use(express.json())
@@ -16,12 +16,18 @@ app.get('/', (req, res) => {
    res.send('Welcome to the home page!');
  });
 
+ 
+
+ app.get('/api', (req, res) => {
+   res.sendFile(path.join(__dirname,'Controller', 'Apiinfo.html'));
+});
+
 
 async function main(){
    await updateData();
  
 }
-//main();
+main();
 
 
 
