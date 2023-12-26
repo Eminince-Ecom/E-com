@@ -12,12 +12,10 @@ const pool = new Pool({
 // Example query
 async function updateData() {
     const client = await pool.connect();
-   
+   console.log(" database connected ");
     try {
-    
-
 // Create a table
-
+/*
 const createTableQuery = `
   CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
@@ -51,18 +49,16 @@ pool.query(createTableQuery, (err, result) => {
 
    // Don't forget to release the client to the pool when done
    pool.end();
-  });*/ 
+  });
    });
-
+   */ 
 }
     
      catch (err) {
       console.error(err);
-    } finally {
-     
+    } finally { 
       client.release();
-     
-    }
+     }
   }
   
   module.exports = {
