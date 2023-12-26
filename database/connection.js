@@ -36,7 +36,7 @@ pool.query(createTableQuery, (err, result) => {
   console.log('Table created successfully');
 
   //Insert data into the table
-  const insertDataQuery = `
+  /*const insertDataQuery = `
     INSERT INTO users (username, email) VALUES
     ('user1', 'user1@example.com'),
     ('user2', 'user2@example.com');
@@ -51,7 +51,7 @@ pool.query(createTableQuery, (err, result) => {
 
    // Don't forget to release the client to the pool when done
    pool.end();
-  });
+  });*/ 
    });
 
 }
