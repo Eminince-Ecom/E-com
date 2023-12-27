@@ -3,6 +3,10 @@ const RegisterUser=require('../Controller/Users')
 const LoginUser=require('../Controller/Users')
 const router=express.Router()
 
+
+
+router.get('/allproducts',allproducts)
+
 /*
     @usage : allproductts
     @url : /api/product/allproducts
@@ -11,8 +15,9 @@ const router=express.Router()
     @access : PUBLIC
  */
 
-router.get('/allproducts',allproducts)
 
+
+router.get('/product',product)
 /*
     @usage : getproduct
     @url : /api/product/getproduct/:id
@@ -21,7 +26,8 @@ router.get('/allproducts',allproducts)
     @access : PUBLIC
  */
 
-router.get('/product',product)
+router.get('/getproductbycategory',getproductCategory)
+
 /*
     @usage : getproductcategory
     @url : /api/product/getproductcategory
@@ -30,12 +36,8 @@ router.get('/product',product)
     @access : PUBLIC
  */
 
-router.get('/getproductbycategory',getproductCategory)
-
-
-
 // Admin Api's 
-
+router.post('/addproduct',addproduct)
 /*
     @usage : addproduct
     @url : /api/product/addproduct
@@ -44,9 +46,9 @@ router.get('/getproductbycategory',getproductCategory)
     @access : PUBLIC
  */
 
-    router.post('/addproduct',addproduct)
+   
 
-
+    router.put('/editproduct/:id',editproduct)
 
 /*
     @usage : editproduct
@@ -56,10 +58,10 @@ router.get('/getproductbycategory',getproductCategory)
     @access : PUBLIC
  */
 
-    router.put('/editproduct/:id',editproduct)
+   
 
 
-
+    router.delete('/deleteproduct/:id',deleteproduct)
 /*
     @usage : deleteproduct
     @url : /api/product/deleteproduct/:id
@@ -68,7 +70,7 @@ router.get('/getproductbycategory',getproductCategory)
     @access : PUBLIC
  */
 
-    router.delete('/deleteproduct/:id',deleteproduct)
+
 
 
 
