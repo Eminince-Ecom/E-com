@@ -4,14 +4,14 @@ const LoginUser=require('../Controller/Users')
 const router=express.Router()
 
 /*
-    @usage : getproductts
-    @url : /api/product/getproducts
+    @usage : allproductts
+    @url : /api/product/allproducts
     @fields : 
     @method : Get
     @access : PUBLIC
  */
 
-router.get('/getproducts',getproducts)
+router.get('/allproducts',allproducts)
 
 /*
     @usage : getproduct
@@ -21,7 +21,7 @@ router.get('/getproducts',getproducts)
     @access : PUBLIC
  */
 
-router.get('/getproduct',getproduct)
+router.get('/product',product)
 /*
     @usage : getproductcategory
     @url : /api/product/getproductcategory
