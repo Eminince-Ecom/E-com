@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-const url=process.env.URL
+const url=require('../Config')
 const Url=`mongodb+srv://aryantrivedieminence:l9A1HIQJw9WFewJN@chatapp.jve0xaf.mongodb.net/`;
 
 const Connection=async()=>{
@@ -8,7 +8,7 @@ const Connection=async()=>{
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log('Database Connected Successfully',url)
+    console.log('Database Connected Successfully',)
   } catch (error) {
     console.log("Failure in database Connection")
   }
@@ -16,4 +16,5 @@ const Connection=async()=>{
 
   module.exports = Connection
   
+
 

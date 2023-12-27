@@ -1,17 +1,20 @@
-const express=require('express')
-const RegisterUser=require('../Controller/Users')
-const LoginUser=require('../Controller/Users')
-const router=express.Router()
+const express = require('express');
+const {RegisterUser} = require('../Controller/Users');
+const User = require('../Model/User');
+const router = express.Router();
+
+//const loginUser = require('../Controller/LoginUser');
+//const forgotPassword = require('../Controller/ForgotPassword');
+
 
 /*
     @usage : Register a User
-    @url : /api/users/register
+    @url : /api/users/signup
     @fields : email , password
     @method : POST
     @access : PUBLIC
  */
-
-router.post('/signup',RegisterUser)
+router.post('/signup', RegisterUser);
 
 /*
     @usage : Login a user
@@ -20,8 +23,8 @@ router.post('/signup',RegisterUser)
     @method : POST
     @access : PUBLIC
  */
+//router.post('/login', );
 
-router.post('/login',LoginUser)
 /*
     @usage : Forgot Password
     @url : /api/users/forgotpassword
@@ -29,21 +32,9 @@ router.post('/login',LoginUser)
     @method : POST
     @access : PUBLIC
  */
+//router.post('/forgotpassword', );
 
-router.post("/forgotpassword")
-/*
-    @usage : 
-    @url : /api/users/login
-    @fields : email , password
-    @method : POST
-    @access : PUBLIC
- */
+// Add other routes as needed
 
-
-
-
-
-
-
-
-module.exports=Users;
+module.exports=router
+  

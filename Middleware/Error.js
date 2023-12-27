@@ -3,6 +3,4 @@ const errorMiddleware=(req,res,next,err)=>{
     res.status(500).json({message:"Internal server error"})
 }
 
-
-
 module.exports=errorMiddleware
