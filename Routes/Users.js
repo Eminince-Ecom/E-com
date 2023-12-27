@@ -3,6 +3,10 @@ const RegisterUser=require('../Controller/Users')
 const LoginUser=require('../Controller/Users')
 const router=express.Router()
 
+
+
+router.post('/signup',RegisterUser)
+
 /*
     @usage : Register a User
     @url : /api/users/register
@@ -11,8 +15,7 @@ const router=express.Router()
     @access : PUBLIC
  */
 
-router.post('/signup',RegisterUser)
-
+    router.post('/login',LoginUser)
 /*
     @usage : Login a user
     @url : /api/users/login
@@ -21,7 +24,7 @@ router.post('/signup',RegisterUser)
     @access : PUBLIC
  */
 
-router.post('/login',LoginUser)
+    router.post("/forgotpassword")
 /*
     @usage : Forgot Password
     @url : /api/users/forgotpassword
@@ -30,10 +33,10 @@ router.post('/login',LoginUser)
     @access : PUBLIC
  */
 
-router.post("/forgotpassword")
+    router.post('/changepassword',LoginUser)
 /*
-    @usage : 
-    @url : /api/users/login
+    @usage : to change the user's password
+    @url : /api/users/changepassword
     @fields : email , password
     @method : POST
     @access : PUBLIC
