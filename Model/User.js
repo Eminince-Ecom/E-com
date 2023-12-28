@@ -1,6 +1,7 @@
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema
 
+
 const userSchema = new mongoose.Schema({
     name: {
       type: String,
@@ -14,7 +15,7 @@ const userSchema = new mongoose.Schema({
     },
     password: {
       type: String,
-      required: true,
+      
     },
     avatar: {
       type: String,

@@ -24,7 +24,7 @@ app.use(express.json())
 app.use(cors())
 
 // Routes
-app.use('/',Users)
+app.use('/api/users',Users)
 
 Connection()
 

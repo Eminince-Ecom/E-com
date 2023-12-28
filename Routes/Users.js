@@ -1,15 +1,13 @@
 const express = require('express');
-const {RegisterUser} = require('../Controller/Users');
+const { registerUser} = require('../Controller/Users');
 const User = require('../Model/User');
 const router = express.Router();
 
 //const loginUser = require('../Controller/LoginUser');
 //const forgotPassword = require('../Controller/ForgotPassword');
+                                                                                                                       
 
-
-
-
-router.post('/signup',RegisterUser)
+//router.post('/signup',RegisterUser)
 
 /*
     @usage : Register a User
