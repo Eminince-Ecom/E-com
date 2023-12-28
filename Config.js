@@ -1,4 +1,4 @@
-const Url=process.env.Url
+const Url=process.env.MONGODBURL
 require("dotenv").config();
 
 module.exports={
