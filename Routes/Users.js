@@ -1,14 +1,8 @@
 const express = require('express');
-const { registerUser} = require('../Controller/Users');
+const { registerUser, login, getUser,
+ getUers, deleteUser, updateUser} = require('../Controller/Users');
 const User = require('../Model/User');
-const router = express.Router();
-
-//const loginUser = require('../Controller/LoginUser');
-//const forgotPassword = require('../Controller/ForgotPassword');
-                                                                                                                       
-
-//router.post('/signup',RegisterUser)
-
+const router = express.Router();                                                                                                         
 /*
     @usage : Register a User
     @url : /api/users/signup
@@ -25,8 +19,45 @@ router.post('/register', registerUser);
     @method : POST
     @access : PUBLIC
  */
-//router.post('/login', );
+router.post('/login',login );
 
+
+
+
+
+
+
+//ADMIN PANEL API"s
+
+/*
+    @usage : Get a user
+    @url : /api/users/id
+    @fields : 
+    @method : GET
+    @access : PUBLIC
+ */
+
+router.get('/:id',getUser)
+
+/*
+    @usage : Get All User
+    @url : /api/users/getall
+    @fields : 
+    @method :GET
+    @access : PUBLIC
+ */
+router.get('/all',getUers)
+
+/*
+    @usage : Get All User
+    @url : /api/users/getall
+    @fields : 
+    @method :GET
+    @access : PUBLIC
+ */
+router.delete('/:id',deleteUser)
+
+router.put('/:id',updateUser)
 
 /*
     @usage : Forgot Password
@@ -37,7 +68,6 @@ router.post('/register', registerUser);
  */
 //router.post('/forgotpassword', );
 
-// Add other routes as needed
 
 module.exports=router
   
