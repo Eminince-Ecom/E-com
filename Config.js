@@ -1,6 +1,7 @@
-const Url=process.env.Url
+const Url=process.env.URL
+const jwts=process.env.JWT
 require("dotenv").config();
 
 module.exports={
-    Url
+    Url,jwts
 }

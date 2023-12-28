@@ -1,7 +1,6 @@
 const mongoose=require('mongoose')
 const url=require('../Config')
-const Url=`mongodb+srv://aryantrivedieminence:l9A1HIQJw9WFewJN@chatapp.jve0xaf.mongodb.net/`;
-
+const Url=`mongodb+srv://aryantrivedieminence:feXnQRMDLiXUslAN@ecommercestore.87yxwpa.mongodb.net/?retryWrites=true&w=majority`;
 const Connection=async()=>{
   try {
     await mongoose.connect(Url, {
