@@ -22,13 +22,14 @@ app.get('/', (req, res) => {
    res.send('Welcome to the home page!');
  });
 
+ 
 //Middlewares
 app.use(express.json())
 app.use(cors())
 
 // Routes
 app.use('/api/users',Users)
-app.use('/api/users',Products)
+app.use('/api/product',Products)
 
 Connection()
 

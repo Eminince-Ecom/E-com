@@ -1,44 +1,41 @@
-const mongoose= require('mongoose')
-
-const imageSchema = mongoose.Schema({
-    public_id: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
-  });
-  
-
+const mongoose=require('mongoose')
 const productschema=mongoose.Schema({
 name:{
-    type:String,
+     type:String,    
     required:true,
-    trim:true
+     trim:true
+},
+description:{
+    type:String,
+    required:true
 },
 price:{
-    type:Number,
-    required:true,
-    maxLength:8
+type:Number,
+required:true
 },
-    description:{
-          type:String,
-         required:true
+images: [
+    {
+        public_id: {
+            type: String,
+            required: true,
+        },
+        url: {
+            type: String,
+            required: true,
+        },
+    },
+],
+rating:{
+type:Number,
+ required:true,   
 },
-ratings:{
-     type:Number,
-     default:0
-},
-images: [imageSchema], 
 category:{
-       type:String,
-       required:true
+    type:String,
+    required:true
 },
 stock:{
-required:true,
-default:10
+    type:String,
+    required:true
 }
 
 })

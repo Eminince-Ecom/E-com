@@ -1,5 +1,5 @@
 const express=require('express')
-const {addProducts}=require('../Controller/Products')
+const {addProducts,getProducts,updateProducts,deleteProducts}=require('../Controller/Products')
 const router=express.Router()
 
 /*
@@ -14,13 +14,13 @@ const router=express.Router()
 
 /*
     @usage : getproduct
-    @url : /api/product/getproduct/:id
+    @url : /api/product/:id
     @fields : 
     @method : Get
     @access : PUBLIC
  */
 
-//router.get('/product',product)
+router.get('/:id',getProducts)
 /*
     @usage : getproductcategory
     @url : /api/product/getproductcategory
@@ -38,36 +38,35 @@ const router=express.Router()
 /*
     @usage : addproduct
     @url : /api/product/addproduct
-    @fields : Productname,productprice,productimage,productcategory,productquantity,productrating
+    @fields : name,price,image,category,stock,rating
     @method : POST
     @access : PUBLIC
  */
-
    router.post('/addproduct',addProducts)
 
 
 
 /*
     @usage : editproduct
-    @url : /api/product/editproduct/:id
-    @fields : Productname,productprice,productimage,productcategory,productquantity,productrating
+    @url : /api/product/:id
+    @fields :name,price,image,category,stock,rating
     @method : PUT
     @access : PUBLIC
  */
 
-  //  router.put('/editproduct/:id',editproduct)
+   router.put('/:id',updateProducts)
 
 
 
 /*
     @usage : deleteproduct
-    @url : /api/product/deleteproduct/:id
+    @url : /api/product/:id
     @fields : 
     @method : Delete
     @access : PUBLIC
  */
 
-  //  router.delete('/deleteproduct/:id',deleteproduct)
+  router.delete('/:id',deleteProducts)
 
 
 
