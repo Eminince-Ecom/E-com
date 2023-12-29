@@ -70,5 +70,5 @@ router.get('/getproductbycategory',getproductCategory)
 
     router.delete('/deleteproduct/:id',deleteproduct)
 
-    
+     
 module.exports=Product;
