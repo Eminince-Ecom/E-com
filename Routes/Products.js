@@ -11,7 +11,7 @@ const router=express.Router()
     @access : PUBLIC
  */
 
-router.get('/allproducts',allproducts)
+//router.get('/allproducts',allproducts)
 
 /*
     @usage : getproduct
@@ -21,7 +21,7 @@ router.get('/allproducts',allproducts)
     @access : PUBLIC
  */
 
-router.get('/product',product)
+//router.get('/product',product)
 /*
     @usage : getproductcategory
     @url : /api/product/getproductcategory
@@ -30,7 +30,7 @@ router.get('/product',product)
     @access : PUBLIC
  */
 
-router.get('/getproductbycategory',getproductCategory)
+//router.get('/getproductbycategory',getproductCategory)
 
 
 
@@ -44,7 +44,7 @@ router.get('/getproductbycategory',getproductCategory)
     @access : PUBLIC
  */
 
-    router.post('/addproduct',addproduct)
+  //  router.post('/addproduct',addproduct)
 
 
 
@@ -56,7 +56,7 @@ router.get('/getproductbycategory',getproductCategory)
     @access : PUBLIC
  */
 
-    router.put('/editproduct/:id',editproduct)
+  //  router.put('/editproduct/:id',editproduct)
 
 
 
@@ -68,10 +68,10 @@ router.get('/getproductbycategory',getproductCategory)
     @access : PUBLIC
  */
 
-    router.delete('/deleteproduct/:id',deleteproduct)
+  //  router.delete('/deleteproduct/:id',deleteproduct)
 
 
 
 
 
-module.exports=Product;
+module.exports=router;

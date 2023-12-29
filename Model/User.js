@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
     contactNo: {
       type: Number,
     },
-    cart: {
+    cartID: {
       items: [
         {
           productId: {

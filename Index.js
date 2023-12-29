@@ -3,6 +3,7 @@ const cors=require('cors')
 //const port=5000
 const Connection=require('./Database/Database')
 const Users=require('../Server/Routes/Users')
+const Products=require('./Routes/Products')
 const app=express()
 require("dotenv").config();
 const dotenv=require('dotenv')
@@ -10,6 +11,7 @@ const path = require('path');
 
 //Middlewares
 app.use(express.json())
+
 
 app.use(cors())
 //const errorMiddleware=require('./Middleware/Error')
@@ -26,6 +28,7 @@ app.use(cors())
 
 // Routes
 app.use('/api/users',Users)
+app.use('/api/users',Products)
 
 Connection()
 
