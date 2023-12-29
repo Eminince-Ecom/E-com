@@ -10,6 +10,7 @@ const path = require('path');
 
 //Middlewares
 app.use(express.json())
+
 app.use(cors())
 //const errorMiddleware=require('./Middleware/Error')
 dotenv.config()
