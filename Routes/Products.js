@@ -1,6 +1,5 @@
 const express=require('express')
-const RegisterUser=require('../Controller/Users')
-const LoginUser=require('../Controller/Users')
+const {addProducts}=require('../Controller/Products')
 const router=express.Router()
 
 /*
@@ -44,7 +43,7 @@ const router=express.Router()
     @access : PUBLIC
  */
 
-  //  router.post('/addproduct',addproduct)
+   router.post('/addproduct',addProducts)
 
 
 
