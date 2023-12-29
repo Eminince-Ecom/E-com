@@ -5,7 +5,6 @@ const router = express.Router();
 
 //const loginUser = require('../Controller/LoginUser');
 //const forgotPassword = require('../Controller/ForgotPassword');
-                                                                                                                       
 
 //router.post('/signup',RegisterUser)
 
