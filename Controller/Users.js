@@ -70,11 +70,9 @@ const login =async(req,res)=>{
 //ADMIN PANEL API
 
 const getUser = async (req, res) => {
-  console.log(2447686, "--------------------------------------------------id");
 
   const userId = req.params.id;
-  console.log(userId, 2447686, "--------------------------------------------------id");
-
+ 
   try {
     const user = await User.findById(userId);
 
