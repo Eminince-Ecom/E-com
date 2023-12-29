@@ -1,8 +1,8 @@
 const express =require('express')
 const cors=require('cors')
-
+//const port=5000
 const Connection=require('./Database/Database')
-const Users=require('./Routes/Users')
+const Users=require('../Server/Routes/Users')
 const app=express()
 require("dotenv").config();
 const dotenv=require('dotenv')

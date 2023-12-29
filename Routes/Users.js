@@ -16,7 +16,7 @@ const router = express.Router();
     @method : POST
     @access : PUBLIC
  */
-router.post('/signup', RegisterUser);
+router.post('/register', registerUser);
 
 /*
     @usage : Login a user
