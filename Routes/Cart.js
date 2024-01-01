@@ -1,8 +1,6 @@
 const express=require('express')
 const {addtoCart,getCart}=require('../Controller/Cart')
 const router=express.Router()
-
-
 /*
     @usage : addtocart
     @url : /api/cart/addtocart

@@ -8,7 +8,7 @@ const app=express()
 require("dotenv").config();
 const dotenv=require('dotenv')
 const path = require('path');
-
+const errorMiddleware=require('../Server/Middleware/Error')
 //Middlewares
 app.use(express.json())
 
@@ -31,7 +31,7 @@ app.use(cors())
 app.use('/api/users',Users)
 app.use('/api/product',Products)
 app.use('/api/cart',Cart)
-
+app.use(errorMiddleware)
 
 //Database Connection
 Connection()
