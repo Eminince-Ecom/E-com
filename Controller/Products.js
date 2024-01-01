@@ -1,5 +1,4 @@
 const Products=require("../Model/Products")
-const { findByIdAndUpdate } = require("../Model/User")
 const  addProducts=async(req,res)=>{
     try {
      const newProduct= new Products({
@@ -60,14 +59,14 @@ const updateProducts = async (req, res) => {
       res.status(400).json({ message: 'Error in Update Product API', error });
     }
   };
+
+
+
   const  deleteProducts=async(req,res)=>{
     const userID=req.params.id
-    try {
-      
-        
-
-
-        
+    try {   
+   const deletedProduct=Products.findByIdAndDelete(userID)
+   res.status(200).json({message:"Product Deleted Successfully",deleteProducts})
     } catch (error) {
         console.log(error)
         res.status(400).json({message:"Error in Add Products Api",Error})
@@ -75,9 +74,17 @@ const updateProducts = async (req, res) => {
 }
 
 
-
+ const getAll=async()=>{
+  try {
+  const getallproducts=Products.find()
+  res.status(200).json({messsage:getAll})
+  } catch (error) {
+    console.log(error)
+    res.status(400).json({message:"Error in  the Api"})
+  }
+ }
 
 module.exports={
     addProducts,getProducts,
-    updateProducts,deleteProducts
+    updateProducts,deleteProducts,getAll
 }

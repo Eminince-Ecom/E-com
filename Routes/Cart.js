@@ -1,7 +1,18 @@
 const express=require('express')
-const RegisterUser=require('../Controller/Users')
-const LoginUser=require('../Controller/Users')
+const {addtoCart,getCart}=require('../Controller/Cart')
 const router=express.Router()
+
+
+/*
+    @usage : addtocart
+    @url : /api/cart/addtocart
+    @fields : ProductId
+    @method : POST
+    @access : PUBLIC
+ */
+
+router.post('/addtocart',addtoCart)
+
 
 /*
     @usage : getcartitems
@@ -11,7 +22,13 @@ const router=express.Router()
     @access : PUBLIC
  */
 
-router.get('/getcartitems',getcartitems)
+router.get('/getcartitems',getCart)
+
+
+
+
+
+
 
 /*
     @usage : updatequantity
@@ -21,16 +38,8 @@ router.get('/getcartitems',getcartitems)
     @access : PUBLIC
  */
 
-router.put('/updatequantity',updatequantity)
-/*
-    @usage : addtocart
-    @url : /api/cart/addtocart
-    @fields : ProductId
-    @method : POST
-    @access : PUBLIC
- */
+//router.put('/updatequantity',updatequantity)
 
-router.post('/addtocart',addtocart)
 /*
     @usage : removeproduct
     @url : /api/product/removeproduct
@@ -39,7 +48,7 @@ router.post('/addtocart',addtocart)
     @access : PUBLIC
  */
 
- router.delete('/removefromcart',removefromcart)
+ //router.delete('/removefromcart',removefromcart)
     /*
         @usage :orderedcart
         @url : /api/product/orderedcart
@@ -48,7 +57,7 @@ router.post('/addtocart',addtocart)
         @access : PUBLIC
      */
 
-router.post('/orderedcart',orderedcart)
+//router.post('/orderedcart',orderedcart)
  
   /*
         @usage :getbill
@@ -59,10 +68,10 @@ router.post('/orderedcart',orderedcart)
      */
 
    
- router.get('/getbill',getbill)   
+//router.get('/getbill',getbill)   
 
 
 
 
 
-module.exports=Cart;
+module.exports=router;
