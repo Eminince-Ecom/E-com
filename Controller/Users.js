@@ -1,4 +1,5 @@
 const express =require('express')
+const jwtkey='8707'
 const jwt=require('jsonwebtoken')
 const bcrypt=require('bcrypt')
 const User=require('../Model/User')
@@ -7,7 +8,6 @@ const jwts=require('../Config')
 
 const registerUser = async (req, res) => {
   const { email, name, picture ,password} = req.body;
-
   if (!email || !name) {
     res.status(502).json({ message: "Please provide proper details" });
     return;
@@ -20,21 +20,16 @@ const registerUser = async (req, res) => {
       res.status(503).json({ message: "User already exists" });
       return;
     }
-    
-    const hasshedpassword=  await password? bcrypt.hash(password,10):undefined
-
+    const hasshedpassword=  await bcrypt.hash(password,10)
     const avatar = picture || `https://www.gravatar.com/avatar/${Math.floor(Math.random() * 1000000)}?d=robohash`;
-
     const newUser = new User({
       name: name,
       email: email,
       avatar:avatar,
       password:hasshedpassword
     });
-
     await newUser.save();
-
-    const token = jwt.sign({ userId: newUser.id, email: newUser.email }, 8707);
+    const token = jwt.sign({ userId: newUser.id, email: newUser.email },jwtkey);
     res.status(201).json({ message: "User Registration Successful", token });
   } catch (error) {
     console.log(error);
@@ -66,6 +61,7 @@ const login =async(req,res)=>{
     res.status(500).json({ message: 'Internal server error' });
   }
 }
+
 
 //ADMIN PANEL API
 
@@ -99,11 +95,12 @@ const getUser = async (req, res) => {
 
 
 
+
 const getUers=async(req,res)=>{
   console.log(" good -> getusers is working -> ");
   try {
-   const allusers=await User.find() 
-   res.status(200).json({messsage:allusers})
+   const allusers=await User.find({})
+   res.status(200).json({message: allusers})
   } catch (error) {
     console.log(error)
     res.status(500).json({message:error})
@@ -125,30 +122,25 @@ console.log(error)
   console.log(Error)
   res.status(400).json({message:"Error in Delete Api"})
 }}
-
-const updateUser=async(req,res)=>{
-  const userId=req.params.id
+const updateUser = async (req, res) => {
+  const userId = req.params.id;
   try {
-    
-const user =await User.findByIdAndUpdate(userId)
-if(!user){
-  res.status(500).json({message:"User Does not Exist"})
-}
+    const user = await User.findByIdAndUpdate(userId, {
+      name: req.body.name,
+      email: req.body.email,
+    }, { new: true }); // { new: true } returns the modified document
 
-user.name=req.body.name
-user.email=req.body.email
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
-if(avatar){
-  user.avatar=req.body.avatar
-}
-const updateUser=await User.save()
-
-res.status(201).json({message:"User Updated Successfully",updateUser})
+    res.status(200).json({ message: "User updated successfully", user });
   } catch (error) {
-    console.log(error)
-    res.status(400).json({message:"Error in Update User"})
+    console.error(error);
+    res.status(500).json({ message: "Error updating user" });
   }
-}
+};
+
 
 
 module.exports={

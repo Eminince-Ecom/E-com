@@ -10,8 +10,6 @@ const router=express.Router()
  */
 
 router.post('/addtocart',addtoCart)
-
-
 /*
     @usage : getcartitems
     @url : /api/cart/getcartitems
@@ -21,13 +19,6 @@ router.post('/addtocart',addtoCart)
  */
 
 router.get('/getcartitems',getCart)
-
-
-
-
-
-
-
 /*
     @usage : updatequantity
     @url : /api/cart/updatequantity
