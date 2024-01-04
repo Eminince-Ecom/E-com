@@ -20,13 +20,6 @@ router.post('/register', registerUser);
     @access : PUBLIC
  */
 router.post('/login',login );
-
-
-
-
-
-
-
 //ADMIN PANEL API"s
 
 /*
@@ -47,7 +40,6 @@ router.get('/:id',getUser)
     @access : PUBLIC
  */
 router.get('/all',getUers)
-
 /*
     @usage : Get All User
     @url : /api/users/getall
@@ -58,7 +50,6 @@ router.get('/all',getUers)
 router.delete('/:id',deleteUser)
 
 router.put('/:id',updateUser)
-
 /*
     @usage : Forgot Password
     @url : /api/users/forgotpassword

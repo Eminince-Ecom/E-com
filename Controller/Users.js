@@ -1,42 +1,48 @@
 const express =require('express')
-const jwtkey='8707'
+//const jwtkey='8707'
 const jwt=require('jsonwebtoken')
 const bcrypt=require('bcrypt')
 const User=require('../Model/User')
 const axios=require('axios')
-const jwts=require('../Config')
+const registerUser = async (req, res,next) => {
+  try {
+  const { email, name, picture, password } = req.body;
 
-const registerUser = async (req, res) => {
-  const { email, name, picture ,password} = req.body;
   if (!email || !name) {
     res.status(502).json({ message: "Please provide proper details" });
     return;
   }
-
-  try {
     const existingUser = await User.findOne({ email });
-
     if (existingUser) {
       res.status(503).json({ message: "User already exists" });
       return;
     }
-    const hasshedpassword=  await bcrypt.hash(password,10)
+    let hashedPassword;
+    let registerType
+    if (!password) {
+      registerType= 'Social';
+     const randomPassword = Math.random().toString(36).slice(-8);
+     hashedPassword = await bcrypt.hash(randomPassword, 10);
+      
+    } else {
+      hashedPassword = await bcrypt.hash(password, 10);
+    }
     const avatar = picture || `https://www.gravatar.com/avatar/${Math.floor(Math.random() * 1000000)}?d=robohash`;
     const newUser = new User({
       name: name,
       email: email,
-      avatar:avatar,
-      password:hasshedpassword
+      avatar: avatar,
+      password: hashedPassword,
+      registerType:registerType
     });
+
     await newUser.save();
-    const token = jwt.sign({ userId: newUser.id, email: newUser.email },jwtkey);
-    res.status(201).json({ message: "User Registration Successful", token });
-  } catch (error) {
-    console.log(error);
-    res.status(501).json({ message: "Error in the API" });
+    const token = jwt.sign({},process.env.JWT);
+    res.status(201).json({ message: "User Registration Successful", token, registration });
+  } catch (err) {
+    next(err)
   }
 }
-
 
 const login =async(req,res)=>{
   const { email, password } = req.body;
@@ -54,7 +60,7 @@ const login =async(req,res)=>{
         return res.status(401).json({ message: 'Invalid email or password' });
       }
     }
-    const token = jwt.sign({ userId: user._id, email: user.email }, "8707", );
+    const token = jwt.sign({},process.env.JWT);
     res.status(200).json({ message: 'Login successful', token, user });
   } catch (error) {
     console.error(error);
@@ -62,12 +68,10 @@ const login =async(req,res)=>{
   }
 }
 
-
 //ADMIN PANEL API
 
 const getUser = async (req, res) => {
   console.log(2447686, "--------------------------------------------------id");
-
   const userId = req.params.id;
   console.log(userId, 2447686, "--------------------------------------------------id");
 
@@ -99,7 +103,7 @@ const getUser = async (req, res) => {
 const getUers=async(req,res)=>{
   console.log(" good -> getusers is working -> ");
   try {
-   const allusers=await User.find({})
+   const allusers=await User.find({}).limit()
    res.status(200).json({message: allusers})
   } catch (error) {
     console.log(error)
@@ -107,8 +111,7 @@ const getUers=async(req,res)=>{
   }
 }
 
-
-const deleteUser=async(req,res)=>{
+const deleteUser=async(req,res,next)=>{
 const userId=req.params.id
 try {
   const user=await User.findById(userId)
@@ -118,28 +121,29 @@ if(!user){
 await User.findByIdAndDelete(userId)
 res.status(200).json({message:"User Deleted Succesfully"})
 console.log(error)
-} catch (error) {
-  console.log(Error)
-  res.status(400).json({message:"Error in Delete Api"})
+} catch (err) {
+  next(err)
 }}
+
+
 const updateUser = async (req, res) => {
   const userId = req.params.id;
   try {
     const user = await User.findByIdAndUpdate(userId, {
       name: req.body.name,
       email: req.body.email,
-    }, { new: true }); // { new: true } returns the modified document
+    }, { new: true }); 
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
     res.status(200).json({ message: "User updated successfully", user });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error updating user" });
   }
 };
+
 
 
 

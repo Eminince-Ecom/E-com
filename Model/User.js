@@ -1,7 +1,6 @@
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema
 
-
 const userSchema = new mongoose.Schema({
     name: {
       type: String,
@@ -15,7 +14,7 @@ const userSchema = new mongoose.Schema({
     },
     password: {
       type: String,
-      
+      required: true,
     },
     avatar: {
       type: String,
@@ -29,23 +28,15 @@ const userSchema = new mongoose.Schema({
       type: Number,
     },
     cartID: {
-      items: [
-        {
-          productId: {
-            type: Schema.Types.ObjectId,
-            ref: 'Product',
-          },
-          quantity: {
-            type: Number,
-            default: 1,
-          },
-          amount: {
-            type: Number,
-            required: true,
-          },
-        },
-      ],
+      type:Number,
     },
+    registerType:{
+      type:String,
+      required:true,
+      default:"Auth"
+
+    },
+    
     createdAt: {
       type: Date,
       default: Date.now,

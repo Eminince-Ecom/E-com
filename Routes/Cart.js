@@ -1,5 +1,5 @@
 const express=require('express')
-const {addtoCart,getCart}=require('../Controller/Cart')
+const {addtoCart,getCart,Orderform}=require('../Controller/Cart')
 const router=express.Router()
 /*
     @usage : addtocart
@@ -58,6 +58,17 @@ router.get('/getcartitems',getCart)
 
    
 //router.get('/getbill',getbill)   
+
+
+
+  /*
+        @usage :orderform
+        @url : /api/cart/orderform
+        @fields : 
+        @method : POST
+        @access : PUBLIC
+     */ 
+router.post('/orderform',Orderform.ShippingInfo)   
 
 
 

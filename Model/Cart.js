@@ -1,26 +1,5 @@
 const mongoose =require('mongoose')
 const cartSchema=mongoose.Schema({
-ShippingInfo:{
-address:{
-type:String,
-required:true,
-},city:{
-type:String,
-required:true,
-},state:{
- type:String,
- required:true,
-},country:{
- type:String,
- required:true,
- },pincode:{
-type:Number,
-required:true,
- },phoneno:{
-type:Number,
-required:true,
-    },
-},
 OrderedItems:[
 {
 name:{

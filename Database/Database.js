@@ -1,15 +1,14 @@
 const mongoose=require('mongoose')
-const url=require('../Config')
-const Url=`mongodb+srv://aryantrivedieminence:feXnQRMDLiXUslAN@ecommercestore.87yxwpa.mongodb.net/?retryWrites=true&w=majority`;
 const Connection=async()=>{
   try {
-    await mongoose.connect(Url, {
+    await mongoose.connect(process.env.URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      writeConcern: { w: 'majority', wtimeout: 1000 }
     });
     console.log('Database Connected Successfully',)
-  } catch (error) {
-    console.log("Failure in database Connection")
+  } catch (err) {
+    console.log(err,"---- Failure in database Connection   ----")
   }
 }
 
