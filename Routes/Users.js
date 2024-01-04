@@ -1,6 +1,6 @@
 const express = require('express');
 const { registerUser, login, getUser,
- getUers, deleteUser, updateUser} = require('../Controller/Users');
+ getUers, deleteUser, updateUser, getUsers} = require('../Controller/Users');
 const User = require('../Model/User');
 const router = express.Router();                                                                                                         
 /*
@@ -39,7 +39,7 @@ router.get('/:id',getUser)
     @method :GET
     @access : PUBLIC
  */
-router.get('/all',getUers)
+router.get('/all',getUsers)
 /*
     @usage : Get All User
     @url : /api/users/getall

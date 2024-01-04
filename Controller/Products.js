@@ -1,11 +1,15 @@
 const Products=require("../Model/Products")
-const  addProducts=async(req,res)=>{
+const cloudinary=require('../Middleware/Cloudinary')
+const err=require('../Middleware/Error')
+const  addProducts=async(req,res,next)=>{
     try {
+      const result= await cloudinary.uploader.upload(req.body.image,{folder:'productimages'})
+      console.log(("6")) 
      const newProduct= new Products({
      name:req.body.name,
      description:req.body.description,
      price:req.body.price,
-     image:req.body.image,
+    image:process.env.CLOUDINARYURL,
      category:req.body.category,
      rating:req.body.rating,
      stock:req.body.stock
@@ -13,10 +17,10 @@ const  addProducts=async(req,res)=>{
      await newProduct.save()
      res.status(200).json({message:"Product added Successfully"})
 
-    } catch (error) {
-        console.log(error)
-        res.status(400).json({message:"Error in Add Products Api",Error})
+    } catch (err) {
+        next(err)
     }
+
 }
 const  getProducts=async(req,res)=>{
 const productId=req.params.id

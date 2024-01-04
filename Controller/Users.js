@@ -99,12 +99,11 @@ const getUser = async (req, res) => {
 
 
 
-
-const getUers=async(req,res)=>{
+const getUsers=async(req,res)=>{
   console.log(" good -> getusers is working -> ");
   try {
-   const allusers=await User.find({}).limit()
-   res.status(200).json({message: allusers})
+   const allusers= await User.find({}).limit(20)
+   res.status(200).json({users: allusers})
   } catch (error) {
     console.log(error)
     res.status(500).json({message:error})
@@ -149,5 +148,5 @@ const updateUser = async (req, res) => {
 
 module.exports={
     registerUser,login,getUser,
-    getUers,updateUser,deleteUser
+    getUsers,updateUser,deleteUser
 }

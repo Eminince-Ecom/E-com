@@ -37,5 +37,5 @@ app.use(errorMiddleware)
 Connection()
 
 
-
+console.log(process.env.API_KEY)
 app.listen(port, () => console.log(`Server is running on http://localhost:${port}`));

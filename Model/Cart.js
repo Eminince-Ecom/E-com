@@ -14,6 +14,7 @@ image:{
 type:String,
 required:true
 },
+
 quantity:{
 type:Number,
 required:true
@@ -28,6 +29,7 @@ type:mongoose.Schema.ObjectId,
 ref:"User",
 required:true
 },
+
 paymentInfo:{
 type:String,    
 required:true,
