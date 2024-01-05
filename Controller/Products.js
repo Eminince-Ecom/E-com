@@ -1,87 +1,121 @@
 const Products=require("../Model/Products")
 const cloudinary=require('../Middleware/Cloudinary')
 const err=require('../Middleware/Error')
-const  addProducts=async(req,res,next)=>{
-    try {
-      const result= await cloudinary.uploader.upload(req.body.image,{folder:'productimages'})
-      console.log(("6")) 
-     const newProduct= new Products({
-     name:req.body.name,
-     description:req.body.description,
-     price:req.body.price,
-    image:process.env.CLOUDINARYURL,
-     category:req.body.category,
-     rating:req.body.rating,
-     stock:req.body.stock
-     })   
-     await newProduct.save()
-     res.status(200).json({message:"Product added Successfully"})
+const addProducts = async (req, res, next) => {
+  try {
+      if (!Array.isArray(req.body.images)) {
+          return res.status(400).json({ message: 'Images should be an array' });
+      }
 
-    } catch (err) {
-        next(err)
-    }
+      const images = [];
 
-}
-const  getProducts=async(req,res)=>{
-const productId=req.params.id
-try {
- const product=await Products.findById(productId)
- if(!product){
-    res.status(500).json({message:"Product does Not Exists"})
- }
-res.status(200).json({message:product})
- } catch (error) {
-        console.log(error)
-        res.status(400).json({message:"Error in Add Products Api",Error})
-    }
-}
+      for (const imageObject of req.body.images) {
+          if (imageObject.url && typeof imageObject.url === 'string') {
+              const result = await cloudinary.uploader.upload(imageObject.url, { folder: 'productimages' });
 
+              images.push({
+                  public_id: result.public_id,
+                  url: result.secure_url
+              });
+          }
+      }
 
-
-const updateProducts = async (req, res) => {
-    const productId = req.params.id;
-  
-    try {
-      const product = await Products.findByIdAndUpdate(
-        productId,
-        {
+      const newProduct = new Products({
           name: req.body.name,
           description: req.body.description,
           price: req.body.price,
-          image: req.body.image,
+          image: process.env.CLOUDINARYURL,
+          images: images,
           category: req.body.category,
           rating: req.body.rating,
-          stock: req.body.stock,
-        },
-        { new: true } 
-      );
-        await product.save();
-  
-      res.status(200).json({ message: 'Product updated successfully', updatedProduct: product });
-    } catch (error) {
-      console.error(error);
-      res.status(400).json({ message: 'Error in Update Product API', error });
+          stock: req.body.stock
+      });
+
+      await newProduct.save();
+      res.status(200).json({ message: "Product added Successfully" });
+
+  } catch (err) {
+      next(err);
+  }
+};
+
+
+
+const updateProducts= async (req, res, next) => {
+  try {
+      const productId = req.params.id;
+
+      // Check if the product exists
+      const existingProduct = await Products.findById(productId);
+
+      if (!existingProduct) {
+          return res.status(404).json({ message: 'Product not found' });
+      }
+
+      let newImages = existingProduct.images;
+      if (req.body.images && Array.isArray(req.body.images)) {
+          newImages = await Promise.all(req.body.images.map(async (image) => {
+              if (image.url) {
+                  const result = await cloudinary.uploader.upload(image.url, { folder: 'productimages' });
+                  return {
+                      public_id: result.public_id,
+                      url: result.secure_url
+                  };
+              } else {
+                  return image; 
+              }
+          }));
+      }
+
+
+      existingProduct.name = req.body.name || existingProduct.name;
+      existingProduct.description = req.body.description || existingProduct.description;
+      existingProduct.price = req.body.price || existingProduct.price;
+      existingProduct.category = req.body.category || existingProduct.category;
+      existingProduct.rating = req.body.rating || existingProduct.rating;
+      existingProduct.stock = req.body.stock || existingProduct.stock;
+      existingProduct.images = newImages;
+      await existingProduct.save();
+
+      res.status(200).json({ message: 'Product updated successfully', updatedProduct: existingProduct });
+  } catch (error) {
+      next(error);
+  }
+};
+
+  const  getProducts=async(req,res)=>{
+    const productId=req.params.id
+    try {
+     const product=await Products.findById(productId)
+     if(!product){
+        res.status(500).json({message:"Product does Not Exists"})
+        return
+     }
+    res.status(200).json({message:product})
+     } catch (error) {
+            console.log(error)
+            res.status(400).json({message:"Error in Add Products Api",Error})
+        }
     }
-  };
-
-
 
   const  deleteProducts=async(req,res)=>{
     const userID=req.params.id
     try {   
-   const deletedProduct=Products.findByIdAndDelete(userID)
-   res.status(200).json({message:"Product Deleted Successfully",deleteProducts})
+   const deletedProduct= await Products.findByIdAndDelete(userID)
+   console.log(deletedProduct)
+   res.status(200).json({message:"Product Deleted Successfully",deletedProduct})
     } catch (error) {
         console.log(error)
-        res.status(400).json({message:"Error in Add Products Api",Error})
+        res.status(400).json({message:"Error in Delete Products Api",Error})
     }
 }
 
 
- const getAll=async()=>{
+ const getAll=async(req,res,next)=>{
   try {
-  const getallproducts=Products.find()
-  res.status(200).json({messsage:getAll})
+  const getallproducts= await Products.find()
+  console.log(getallproducts)
+  res.status(200).json({products:getallproducts})
   } catch (error) {
     console.log(error)
     res.status(400).json({message:"Error in  the Api"})

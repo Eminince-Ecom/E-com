@@ -1,16 +1,16 @@
 const express=require('express')
-const {addProducts,getProducts,updateProducts,deleteProducts}=require('../Controller/Products')
+const {addProducts,getProducts,updateProducts,deleteProducts,getAll}=require('../Controller/Products')
 const router=express.Router()
 
 /*
     @usage : allproductts
-    @url : /api/product/allproducts
+    @url : /api/product/all
     @fields : 
     @method : Get
     @access : PUBLIC
  */
 
-//router.get('/allproducts',allproducts)
+router.get('/all',getAll)
 
 /*
     @usage : getproduct
