@@ -1,71 +1,49 @@
 const mongoose =require('mongoose')
-const cartSchema=mongoose.Schema({
-OrderedItems:[
-{
-name:{
-type:String,
-required:true,
-},
-price:{
-type:String,
-required:true
-},
-image:{
-type:String,
-required:true
-},
-
-quantity:{
-type:Number,
-required:true
-},
+const Products = require('./Products')
+const User =require('../Model/User')
+const cartitemSchema=mongoose.Schema({
 product:{
 type:mongoose.Schema.ObjectId,
-ref:"Products",
-required:true   
-}}],
-userinfo:{
-type:mongoose.Schema.ObjectId,
-ref:"User",
+ref:Products,
 required:true
 },
-
-paymentInfo:{
-type:String,    
-required:true,
-},
-status:{
-Type:String,
-},
-paymentmethod:{
-type:String,
-required:true
-},
-orderstatus:{
-type:String,
-default:"processing"
-},
-itemprice:{
-    type:Number,
-    required:true,
-    default:0
-},
-totalprice:{
+quantity:{
 type:Number,
 required:true,
-default:0
-},
-shippingprice:{
-    type:Number,
-    required:true,
-    default:0
-},
-taxprice:{
-    type:Number,
-    required:true,
-    default:0
-},
+default:1    
+}})
 
+const cartSchema=mongoose.Schema({
+orderedItems:[cartitemSchema],
+userinfo:{
+    type:mongoose.Schema.ObjectId,
+    ref:User,
+    required:true
+},
+paymentstatus:{
+type:String,
+required:true
+},
+paymentmethod:{
+ type:String,
+ required:true,
+ default:"Online"
+  },
+orderstatus:{
+ type:String,
+  required:true,
+  default:"processing"
+ },taxprice:{
+ type:Number,
+ required:true,
+ default:18
+ },shippingprice:{
+  type:Number,
+  required:true
+  },taxprice:{
+   type:Number,
+   required:true
+   },
 })
 const Cart=mongoose.model("Cart",cartSchema)
 module.exports=Cart

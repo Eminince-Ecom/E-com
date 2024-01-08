@@ -18,7 +18,7 @@ router.post('/addtocart',addtoCart)
     @access : PUBLIC
  */
 
-router.get('/getcartitems',getCart)
+router.get('/getcart',getCart)
 /*
     @usage : updatequantity
     @url : /api/cart/updatequantity
