@@ -69,7 +69,5 @@ router.get('/:id',getProducts)
   router.delete('/:id',deleteProducts)
 
 
-
-
-
 module.exports=router;
+// route files are up to date
