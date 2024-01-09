@@ -46,8 +46,8 @@ const addtoCart = async (req, res, next) => {
 }
 const getCart=async(req,res,next)=>{
     try {
-    const userId=req.params.id   
-    const cart= await Cart.findById(userId)
+    const cartId=req.params.id   
+    const cart= await Cart.findById(cartId)
     res.status(200).json({message:cart})
     } catch (error) {
      console.log(error)
@@ -84,33 +84,55 @@ const getCart=async(req,res,next)=>{
 
 
 const updateQuantity=async(req,res,next)=>{
-    try {
-        
-
-    } catch (error) {
-       next(error)
-    }
-}
-
-
-const deleteItems=async(req,res,next)=>{
+const userId=req.params.id
 const productId=req.params.id
-    try {
-     const deletedproduct=await Cart.findByIdAndDelete(productId)
-     if(!deletedproduct){
-    console.log("Inavlid ProductId")
-    res.status(400).json({message:"Invalid ProductId"})
-     } 
-    res.status(200).json({message:"Product removed from cart Succsesfully "})
-    } catch (error) {
-       next(error) 
-    }
+const newQuantity= req.params.quantity
+try {
+const userCart= await  Cart.findOne({userinfo:userId})
+  if(!userCart){
+res.status(401).json({message:"User Cart"})
+return
+  }
+
+const productIndex= userCart.orderedItems.findIndex((item)=>item.product.equals(productId))
+if(productIndex===  -1)   {
+  res.status(402).json({message:"Product not found"})
+  return
+}    
+userCart.orderedItems[productIndex].quantity=newQuantity
+res.status(200).json({message:"cart updated successfiully"})
+} catch (error) {
+next(error)
 }
+}
+
+const deleteItems = async (req, res, next) => {
+  const userId = req.params.userId;
+  const productId = req.params.productId;
+
+  try {
+    const userCart = await Cart.findOne({ userinfo: userId });
+    if (!userCart) {
+      return res.status(404).json({ message: "User's cart not found" });
+    }
+    const productIndex = userCart.orderedItems.findIndex(
+      (item) => item.product.equals(productId)
+    );
+    if (productIndex === -1) {
+      return res.status(404).json({ message: "Product not found in the cart" });
+    }
+    userCart.orderedItems.splice(productIndex, 1);
+    await userCart.save();
+    res.status(200).json({ message: "Product removed from cart successfully" });
+  } catch (error) {
+    next(error);
+  }
+};
 
 
 module.exports={
 addtoCart,getCart,Orderform
-,deleteItems
+,deleteItems,updateQuantity
 
 }
 

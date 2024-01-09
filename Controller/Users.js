@@ -70,7 +70,7 @@ const login =async(req,res)=>{
 
 //ADMIN PANEL API
 
-const getUser = async (req, res) => {
+const getUser= async (req, res) => {
   console.log(2447686, "--------------------------------------------------id");
   const userId = req.params.id;
   console.log(userId, 2447686, "--------------------------------------------------id");
@@ -97,18 +97,19 @@ const getUser = async (req, res) => {
   }
 };
 
-
-
-const getUsers=async(req,res)=>{
-  console.log(" good -> getusers is working -> ");
+const getUsers=async(req,res,next)=>{
   try {
-   const allusers= await User.find({}).limit(20)
-   res.status(200).json({users: allusers})
+  const all= await User.find()
+  console.log(all)
+  res.status(200).json({users:all})
   } catch (error) {
-    console.log(error)
-    res.status(500).json({message:error})
+    next(error)
   }
 }
+
+
+
+
 
 const deleteUser=async(req,res,next)=>{
 const userId=req.params.id
@@ -147,6 +148,6 @@ const updateUser = async (req, res) => {
 
 
 module.exports={
-    registerUser,login,getUser,
-    getUsers,updateUser,deleteUser
+    registerUser,login,getUsers,
+    getUser,updateUser,deleteUser
 }

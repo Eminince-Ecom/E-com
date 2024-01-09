@@ -1,5 +1,5 @@
 const express=require('express')
-const {addtoCart,getCart,Orderform}=require('../Controller/Cart')
+const {addtoCart,getCart,Orderform, deleteItems,updateQuantity}=require('../Controller/Cart')
 const router=express.Router()
 /*
     @usage : addtocart
@@ -12,13 +12,13 @@ const router=express.Router()
 router.post('/addtocart',addtoCart)
 /*
     @usage : getcartitems
-    @url : /api/cart/getcartitems
+    @url : /api/cart/getcart
     @fields : 
     @method : Get
     @access : PUBLIC
  */
 
-router.get('/getcart',getCart)
+router.get('/:id',getCart)
 /*
     @usage : updatequantity
     @url : /api/cart/updatequantity
@@ -27,7 +27,7 @@ router.get('/getcart',getCart)
     @access : PUBLIC
  */
 
-//router.put('/updatequantity',updatequantity)
+router.put('/:userId/:productId/:quantity',updateQuantity)
 
 /*
     @usage : removeproduct
@@ -37,7 +37,7 @@ router.get('/getcart',getCart)
     @access : PUBLIC
  */
 
- //router.delete('/removefromcart',removefromcart)
+ router.delete('/:userId/:productId',deleteItems)
     /*
         @usage :orderedcart
         @url : /api/product/orderedcart

@@ -1,6 +1,6 @@
 const express = require('express');
 const { registerUser, login, getUser,
- getUers, deleteUser, updateUser, getUsers} = require('../Controller/Users');
+ getUsers, deleteUser, updateUser} = require('../Controller/Users');
 const User = require('../Model/User');
 const router = express.Router();                                                                                                         
 /*
@@ -58,6 +58,8 @@ router.put('/:id',updateUser)
     @access : PUBLIC
  */
 //router.post('/forgotpassword', );
+
+
 
 
 module.exports=router

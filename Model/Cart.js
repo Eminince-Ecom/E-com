@@ -12,7 +12,6 @@ type:Number,
 required:true,
 default:1    
 }})
-
 const cartSchema=mongoose.Schema({
 orderedItems:[cartitemSchema],
 userinfo:{
