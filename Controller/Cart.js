@@ -56,33 +56,7 @@ const getCart=async(req,res,next)=>{
     }
 
 
- const Orderform = {
-        ShippingInfo: async (req, res, next) => {
-          try {
-            const shippingDetails = new Cart({
-              ShippingInfo: req.body.ShippingInfo,
-              OrderedItems: req.body.OrderedItems,
-              userinfo: req.body.userinfo,
-              paymentInfo: req.body.paymentInfo,
-              status: req.body.status,
-              paymentmethod: req.body.paymentmethod,
-              orderstatus: req.body.orderstatus,
-              itemprice: req.body.itemprice,
-              totalprice: req.body.totalprice,
-              shippingprice: req.body.shippingprice,
-              taxprice: req.body.taxprice,
-            });
-      
-            const savedShippingDetails = await shippingDetails.save();
-            res.status(200).json({ message: "Order form submitted successfully", shippingDetails: savedShippingDetails });
-          } catch (error) {
-            next(error);
-          }
-        },
-      };
-
-
-
+ 
 const updateQuantity=async(req,res,next)=>{
 const userId=req.params.id
 const productId=req.params.id
@@ -90,10 +64,9 @@ const newQuantity= req.params.quantity
 try {
 const userCart= await  Cart.findOne({userinfo:userId})
   if(!userCart){
-res.status(401).json({message:"User Cart"})
+res.status(401).json({message:"User Cart Does Not Exist's"})
 return
   }
-
 const productIndex= userCart.orderedItems.findIndex((item)=>item.product.equals(productId))
 if(productIndex===  -1)   {
   res.status(402).json({message:"Product not found"})
@@ -130,9 +103,47 @@ const deleteItems = async (req, res, next) => {
 };
 
 
+
+
+const Orderform = {
+  ShippingInfo: async (req, res, next) => {
+    try {
+      const shippingDetails = new Cart({
+        ShippingInfo: req.body.ShippingInfo,
+        OrderedItems: req.body.OrderedItems,
+        userinfo: req.body.userinfo,
+        paymentInfo: req.body.paymentInfo,
+        status: req.body.status,
+        paymentmethod: req.body.paymentmethod,
+        orderstatus: req.body.orderstatus,
+        itemprice: req.body.itemprice,
+        totalprice: req.body.totalprice,
+        shippingprice: req.body.shippingprice,
+        taxprice: req.body.taxprice,
+      });
+
+      const savedShippingDetails = await shippingDetails.save();
+      res.status(200).json({ message: "Order form submitted successfully", shippingDetails: savedShippingDetails });
+    } catch (error) {
+      next(error);
+    }
+  },
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports={
 addtoCart,getCart,Orderform
-,deleteItems,updateQuantity
-
-}
+,deleteItems,updateQuantity}
 
