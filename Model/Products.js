@@ -43,3 +43,4 @@ stock:{
 
 const Products=mongoose.model("Products",productschema)
 module.exports=Products
+// products schema 
