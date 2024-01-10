@@ -13,3 +13,4 @@ const calculateTotalPrice = (itemPrice, shippingPrice, taxPrice) => {
 module.exports={
     calculateItemPrice,calculateTotalPrice
 }
+// total is updated in this file.
