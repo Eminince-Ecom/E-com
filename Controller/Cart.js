@@ -62,7 +62,7 @@ const userId=req.params.id
 const productId=req.params.id
 const newQuantity= req.params.quantity
 try {
-const userCart= await  Cart.findOne({userinfo:userId})
+const userCart= await  Cart.findOne({userId})
   if(!userCart){
 res.status(401).json({message:"User Cart Does Not Exist's"})
 return
@@ -101,10 +101,6 @@ const deleteItems = async (req, res, next) => {
     next(error);
   }
 };
-
-
-
-
 const Orderform = {
   ShippingInfo: async (req, res, next) => {
     try {
@@ -129,20 +125,6 @@ const Orderform = {
     }
   },
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports={
 addtoCart,getCart,Orderform
 ,deleteItems,updateQuantity}

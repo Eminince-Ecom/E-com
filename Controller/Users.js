@@ -107,10 +107,6 @@ const getUsers=async(req,res,next)=>{
   }
 }
 
-
-
-
-
 const deleteUser=async(req,res,next)=>{
 const userId=req.params.id
 try {
@@ -143,9 +139,6 @@ const updateUser = async (req, res) => {
     res.status(500).json({ message: "Error updating user" });
   }
 };
-
-
-
 
 module.exports={
     registerUser,login,getUsers,
