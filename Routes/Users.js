@@ -42,3 +42,4 @@ router.post('/signup',RegisterUser)
     @access : PUBLIC
  */
 module.exports=Users;
+//"  just checked users routes for get some code "
