@@ -1,0 +1,90 @@
+const mongoose =require('mongoose')
+const cartSchema=mongoose.Schema({
+ShippingInfo:{
+address:{
+type:String,
+required:true,
+},city:{
+type:String,
+required:true,
+},state:{
+ type:String,
+ required:true,
+},country:{
+ type:String,
+ required:true,
+ },pincode:{
+type:Number,
+required:true,
+ },phoneno:{
+type:Number,
+required:true,
+    },
+},
+OrderedItems:[
+{
+name:{
+type:String,
+required:true,
+},
+price:{
+type:String,
+required:true
+},
+image:{
+type:String,
+required:true
+},
+quantity:{
+type:Number,
+required:true
+},
+product:{
+type:mongoose.Schema.ObjectId,
+ref:"Products",
+required:true   
+}}],
+userinfo:{
+type:mongoose.Schema.ObjectId,
+ref:"User",
+required:true
+},
+paymentInfo:{
+type:String,    
+required:true,
+},
+status:{
+Type:String,
+},
+paymentmethod:{
+type:String,
+required:true
+},
+orderstatus:{
+type:String,
+default:"processing"
+},
+itemprice:{
+    type:Number,
+    required:true,
+    default:0
+},
+totalprice:{
+type:Number,
+required:true,
+default:0
+},
+shippingprice:{
+    type:Number,
+    required:true,
+    default:0
+},
+taxprice:{
+    type:Number,
+    required:true,
+    default:0
+},
+
+})
+const Cart=mongoose.model("Cart",cartSchema)
+module.exports=Cart
