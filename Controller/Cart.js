@@ -38,6 +38,10 @@ const addtoCart = async (req, res, next) => {
         }else{
             cart.orderedItems.push({product,quantity})
         }}
+           //here we will calculate the total price
+           const itemPrice = calculateItemPrice(cart.orderedItems);
+           cart.totalprice = calculateTotalPrice(itemPrice, cart.shippingprice, cart.taxprice);
+           console.log(cart.totalprice);
         await cart.save();
         res.status(201).json({ message:"Product Added Successfully"});
     } catch (error) {

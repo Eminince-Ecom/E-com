@@ -43,6 +43,10 @@ orderstatus:{
    type:Number,
    required:true
    },
+   totalPrice:{
+    type:Number,
+   
+   }
 })
 const Cart=mongoose.model("Cart",cartSchema)
 module.exports=Cart
