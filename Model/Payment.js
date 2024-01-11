@@ -4,7 +4,7 @@ const paymentSchema=mongoose.Schema({
     cartId:{
     type:mongoose.Schema.Types.ObjectId,
     ref:"Cart",
-    required:true
+   // required:true
     },
     paymentMethod:{
         type:String,
@@ -14,9 +14,14 @@ const paymentSchema=mongoose.Schema({
         type:String,
         require:true
     },
+    amount:{
+    type:Number,
+    required:true
+    },
     createdAt:{
-        type:Date.now,
-        required:true
+        type:Date,
+        required:true,
+        default:Date.now
     }
 })
 
