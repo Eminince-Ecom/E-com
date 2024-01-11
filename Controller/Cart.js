@@ -6,8 +6,19 @@ const User=require('../Model/User')
 const { calculateItemPrice,calculateTotalPrice}=require('../Helper/Total')
 const { findByIdAndDelete } = require('../Model/User')
 const addtoCart = async (req, res, next) => {
+  const requiredFields = ['productId', 'quantity', 'userId'];
+  for (const field of requiredFields) {
+      if (!req.body[field]) {
+          return res.status(400).json({ message:`Missing ${field} in the request body. Please fill in all the required fields.` });
+      }
+  }
+
     try {
         const { productId, quantity, userId } = req.body;
+
+        if (!mongoose.Types.ObjectId.isValid(productId)) {
+          return res.status(400).json({ error: "Invalid product ID. Please enter a valid ID." });
+        }
         let cart = await Cart.findOne({ userinfo: userId });
          
         const product = await Products.findById(productId);
@@ -49,8 +60,12 @@ const addtoCart = async (req, res, next) => {
     }
 }
 const getCart=async(req,res,next)=>{
+  const cartId=req.params.id   
+
+  if (!mongoose.Types.ObjectId.isValid(cartId)) {
+    return res.status(400).json({ error: "Invalid  ID. Please enter a valid ID." });
+  }
     try {
-    const cartId=req.params.id   
     const cart= await Cart.findById(cartId)
     res.status(200).json({message:cart})
     } catch (error) {
@@ -60,33 +75,48 @@ const getCart=async(req,res,next)=>{
     }
 
 
- 
-const updateQuantity=async(req,res,next)=>{
-const userId=req.params.id
-const productId=req.params.id
-const newQuantity= req.params.quantity
-try {
-const userCart= await  Cart.findOne({userId})
-  if(!userCart){
-res.status(401).json({message:"User Cart Does Not Exist's"})
-return
-  }
-const productIndex= userCart.orderedItems.findIndex((item)=>item.product.equals(productId))
-if(productIndex===  -1)   {
-  res.status(402).json({message:"Product not found"})
-  return
-}    
-userCart.orderedItems[productIndex].quantity=newQuantity
-res.status(200).json({message:"cart updated successfiully"})
-} catch (error) {
-next(error)
-}
-}
+    const updateQuantity = async (req, res, next) => {
+        const userId = req.params.userId; 
+        const productId = req.params.productId; 
+        const newQuantity = req.body.quantity;
+    
+        if (!mongoose.Types.ObjectId.isValid(userId) || !mongoose.Types.ObjectId.isValid(productId)) {
+            return res.status(400).json({ message: "Invalid userId or productId. Please enter valid IDs." });
+        }
+    
+        try {
+            if (newQuantity === undefined || newQuantity === null) {
+                return res.status(400).json({ message: "Please provide the 'quantity' in the request body" });
+            }
+            const userCart = await Cart.findOne({ userinfo: userId });
+            if (!userCart) {
+                res.status(401).json({ message: "User Cart Does Not Exist" });
+                return;
+            }
+            const productIndex = userCart.orderedItems.findIndex((item) => item.product.equals(productId));
+    
+            if (productIndex === -1) {
+                res.status(404).json({ message: "Product not found in the cart" });
+                return;
+            }userCart.orderedItems[productIndex].quantity = newQuantity;
+            await userCart.save();
+    
+            res.status(200).json({ message: "Cart updated successfully" });
+        } catch (error) {
+            next(error);
+        }
+    };
+    
+  
 
 const deleteItems = async (req, res, next) => {
   const userId = req.params.userId;
   const productId = req.params.productId;
 
+
+  if (!mongoose.Types.ObjectId.isValid(userId || productId) ) {
+    return res.status(400).json({ error: "Invalid  ID. Please enter a valid ID." });
+  }
   try {
     const userCart = await Cart.findOne({ userinfo: userId });
     if (!userCart) {

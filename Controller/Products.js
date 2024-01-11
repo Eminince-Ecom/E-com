@@ -1,4 +1,5 @@
 const Products=require("../Model/Products")
+const mongoose=require('mongoose')
 const cloudinary=require('../Middleware/Cloudinary')
 const err=require('../Middleware/Error')
 const addProducts = async (req, res, next) => {
@@ -42,9 +43,12 @@ const addProducts = async (req, res, next) => {
 
 
 const updateProducts= async (req, res, next) => {
+    const productId = req.params.id;
+ if (!mongoose.Types.ObjectId.isValid(productId )) {
+    return res.status(400).json({ error: "Invalid user ID. Please enter a valid ID." });
+  }
   try {
-      const productId = req.params.id;
-
+   
       // Check if the product exists
       const existingProduct = await Products.findById(productId);
 
@@ -85,6 +89,9 @@ const updateProducts= async (req, res, next) => {
 
   const  getProducts=async(req,res)=>{
     const productId=req.params.id
+    if (!mongoose.Types.ObjectId.isValid(productId)) {
+        return res.status(400).json({ error: "Invalid user ID. Please enter a valid ID." });
+      }
     try {
      const product=await Products.findById(productId)
      if(!product){
@@ -100,6 +107,10 @@ const updateProducts= async (req, res, next) => {
 
   const  deleteProducts=async(req,res)=>{
     const userID=req.params.id
+
+    if (!mongoose.Types.ObjectId.isValid(userID)) {
+        return res.status(400).json({ error: "Invalid user ID. Please enter a valid ID." });
+      }
     try {   
    const deletedProduct= await Products.findByIdAndDelete(userID)
    console.log(deletedProduct)

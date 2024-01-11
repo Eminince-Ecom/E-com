@@ -1,8 +1,8 @@
 const express=require('express')
-const Payment=require("../Controller/Payment")
+const  paymentsR=require("../Controller/Payment")
 const router=express.Router()
 
-router.post("/:cartId",Payment)
+router.post("/pay", paymentsR)
 
 
 

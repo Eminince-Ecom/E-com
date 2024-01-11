@@ -1,8 +1,18 @@
 const express = require('express');
-const { registerUser, login, getUser,
- getUsers, deleteUser, updateUser} = require('../Controller/Users');
+const { registerUser, login, getUserById,
+    getAllUsers, deleteUser, updateUser} = require('../Controller/Users');
 const User = require('../Model/User');
-const router = express.Router();                                                                                                         
+const router = express.Router();  
+
+/*
+    @usage : Get All User
+    @url : /api/users/getall
+    @fields : 
+    @method :GET
+    @access : PUBLIC
+ */
+    router.get('/all',getAllUsers)
+    
 /*
     @usage : Register a User
     @url : /api/users/signup
@@ -10,6 +20,7 @@ const router = express.Router();
     @method : POST
     @access : PUBLIC
  */
+
 router.post('/register', registerUser);
 
 /*
@@ -23,23 +34,14 @@ router.post('/login',login );
 //ADMIN PANEL API"s
 
 /*
-    @usage : Get a user
-    @url : /api/users/id
+    @usage : Get a user by ID
+    @url : /api/users/:id
     @fields : 
     @method : GET
     @access : PUBLIC
  */
+    router.get('/:id', getUserById);
 
-router.get('/:id',getUser)
-
-/*
-    @usage : Get All User
-    @url : /api/users/getall
-    @fields : 
-    @method :GET
-    @access : PUBLIC
- */
-router.get('/all',getUsers)
 /*
     @usage : Get All User
     @url : /api/users/getall
