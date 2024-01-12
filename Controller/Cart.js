@@ -65,8 +65,14 @@ const getCart=async(req,res,next)=>{
   if (!mongoose.Types.ObjectId.isValid(cartId)) {
     return res.status(400).json({ error: "Invalid  ID. Please enter a valid ID." });
   }
+
     try {
     const cart= await Cart.findById(cartId)
+if(cart.OrderedItems===0){
+  res.json({message:"Cart is empty"})
+  return
+}
+    
     res.status(200).json({message:cart})
     } catch (error) {
      console.log(error)
